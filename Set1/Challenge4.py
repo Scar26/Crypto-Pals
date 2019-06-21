@@ -36,6 +36,14 @@ def XORbruteforce(ciphertext): #the ciphertext here is supposed to be a bytesequ
 
 	return sorted(candidates, key=lambda c: c['score'], reverse=True)[0]
 
-ciphertext = bytes.fromhex("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
-result = XORbruteforce(ciphertext)
-print('plaintext : %s\nkey : %s'%(result['plaintext'].decode(),result['key']))
+hexes = open('Challenge4input.txt','rb').read().decode().split("\n")
+solved = []
+for i in hexes:
+    solved.append(XORbruteforce(bytes.fromhex(i))['plaintext'])
+
+most_probable_solution = solved[0]
+for i in solved:
+    if how_englishy(i)>how_englishy(most_probable_solution):
+        most_probable_solution = i
+
+print(most_probable_solution.decode().rstrip())
