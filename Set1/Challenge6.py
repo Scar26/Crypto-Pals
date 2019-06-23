@@ -36,16 +36,16 @@ def getkeylengths(ciphertext):
 
 	return 	sorted(normalized_distances, key = lambda c: c['dist'])[:3]
 
-def breakrepeatedkeyXOR(binary_data):
-	probable_key_sizes = [29]
+def breakrepeatedkeyXOR(ciphertext):
+	probable_key_sizes = getkeylengths(ciphertext)
 	decrypted = []
 	for key_length in probable_key_sizes:
 		key = b''
 		
-		for i in range(key_length):
+		for i in range(key_length['k']):
 			block = b''
 			
-			for j in range(i,len(ciphertext),key_length):
+			for j in range(i,len(ciphertext),key_length['k']):
 				block += bytes([ciphertext[j]])
 
 
@@ -55,7 +55,7 @@ def breakrepeatedkeyXOR(binary_data):
 		'plaintext' : repeatedkeyXOR(ciphertext,key)
 		}
 		decrypted.append(obj)
-	return sorted(decrypted, key = lambda c: how_englishy(c['plaintext']))[0]
+	return sorted(decrypted, key = lambda c: how_englishy(c['plaintext']), reverse = True)[0]
 
 
 if __name__ == '__main__':
