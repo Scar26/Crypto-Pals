@@ -8,12 +8,12 @@ def repeatedkeyXOR(input, key):
 	output = b''
 	for i in range(len(input)):
 		byte = input[i]
-		output += bytes([byte^key[i%3]])
+		output += bytes([byte^key[i%n]])
 
 	return output
 
 def  main():
-	print(hexlify(repeatedkeyXOR(plaintext,key)),"utf-8")
+	print(hexlify(repeatedkeyXOR(plaintext,key)).decode())
 
 if __name__ == '__main__':
 	main()

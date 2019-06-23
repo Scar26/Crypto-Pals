@@ -36,6 +36,10 @@ def XORbruteforce(ciphertext): #the ciphertext here is supposed to be a bytesequ
 
 	return sorted(candidates, key=lambda c: c['score'], reverse=True)[0]
 
-ciphertext = bytes.fromhex("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
-result = XORbruteforce(ciphertext)
-print('plaintext : %s\nkey : %s'%(result['plaintext'].decode(),result['key']))
+def main():
+	ciphertext = bytes.fromhex("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
+	result = XORbruteforce(ciphertext)
+	print('plaintext : %s\nkey : %s'%(result['plaintext'].decode(),result['key']))
+
+if __name__ == '__main__':
+	main()
