@@ -1,6 +1,6 @@
 def pkcs7(s, l):
     byte = l-len(s)
-    return s + chr(byte)*byte
+    return s + bytes([byte])*byte
 
 if __name__ == '__main__':
-    print(len(pkcs7("YELLOW SUBMARINE", 20)))
+    print(pkcs7(b"YELLOW SUBMARINE", 20))
