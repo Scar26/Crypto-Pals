@@ -3,4 +3,4 @@ def pkcs7(s, l):
     return s + chr(byte)*byte
 
 if __name__ == '__main__':
-    print(pkcs7("YELLOW SUBMARINE", 20))
+    print(len(pkcs7("YELLOW SUBMARINE", 20)))
