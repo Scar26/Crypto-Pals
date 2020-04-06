@@ -35,7 +35,7 @@ def detect_mode():
     else:
         predicted_mode = 'CBC'
     success = actual_mode == predicted_mode
-    return success
+    return (predicted_mode, success)
 
 if __name__ == '__main__':
-    print(all([detect_mode() for _ in range(1000)]))
+    print(all([detect_mode()[1] for _ in range(1000)]))
