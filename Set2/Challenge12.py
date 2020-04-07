@@ -12,7 +12,7 @@ YnkK""")
 key = os.urandom(16)
 cipher = AES.new(key, AES.MODE_ECB)
 
-def ECB_oracle(inp):        
+def ECB_oracle(inp):
     inp += secret
     if len(inp)%16 != 0:
         inp = pad(inp, (len(inp)//16+1)*16)
