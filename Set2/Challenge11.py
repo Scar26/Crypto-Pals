@@ -28,7 +28,7 @@ def oracle(inp):
         inp = pad(inp, (len(inp)//16+1)*16)
     return (binascii.hexlify(cipher.encrypt(inp)).decode(), mode)
 
-def detect_mode():
+def detect_mode(oracle):
     resp, actual_mode = oracle(b'a'*50)
     if checkECB(resp, 32):
         predicted_mode = 'ECB'
@@ -38,4 +38,4 @@ def detect_mode():
     return (predicted_mode, success)
 
 if __name__ == '__main__':
-    print(all([detect_mode()[1] for _ in range(1000)]))
+    print(all([detect_mode(oracle)[1] for _ in range(1000)]))
